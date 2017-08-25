@@ -3,8 +3,10 @@ require 'singleton'
 module Alexa
   class Response
     include Singleton
+    attr_accessor :reprompt
 
     def initialize
+      @reprompt = "Can I help you with anything else?"
     end
 
     def make_response(alexa_request, alexa_response)
@@ -45,8 +47,9 @@ module Alexa
         "Welcome to Round Table Apps. " +
         "We are a software development company and we can help you with your business. " +
         "You can ask me about our company and our projects."
-      alexa_response.add_speech(speech_text, true)
-      alexa_response.add_reprompt("Can I help you with anything else?", true)
+      # alexa_response.add_speech(speech_text, true)
+      # alexa_response.add_reprompt("Can I help you with anything else?", true)
+      alexa_response.say_response_with_reprompt(speech_text, @reprompt, false)
     end
 
     def session_ended alexa_response
@@ -61,8 +64,9 @@ module Alexa
       speech_text += "Give me some information about a project. "
       speech_text += "You can also say stop if you're done. "
       speech_text += "So how can I help?"
-      alexa_response.add_speech(speech_text, true)
-      alexa_response.add_reprompt("Can I help you with anything else?", true)
+      # alexa_response.add_speech(speech_text, true)
+      # alexa_response.add_reprompt("Can I help you with anything else?", true)
+      alexa_response.say_response_with_reprompt(speech_text, @reprompt, false)
     end
 
     def company_info alexa_response
@@ -72,14 +76,16 @@ module Alexa
         "Round Table is a full stack web development agency for all of your tech needs. We create beautiful, functional, innovative software that achieves measurable results for your business and that your customers will love to use."
       ]
       speech_text = data[((Random.rand * 1000) % data.size).floor]
-      alexa_response.add_speech(speech_text, true)
-      alexa_response.add_reprompt("Can I help you with anything else?", true)
+      # alexa_response.add_speech(speech_text, true)
+      # alexa_response.add_reprompt("Can I help you with anything else?", true)
+      alexa_response.say_response_with_reprompt(speech_text, @reprompt, false)
     end
 
     def projects_list alexa_response
       speech_text = "These are some of our projects: my sumo, zupply, pfm, pip mcgregor, hum, workfast"
-      alexa_response.add_speech(speech_text, true)
-      alexa_response.add_reprompt("Can I help you with anything else?", true)
+      # alexa_response.add_speech(speech_text, true)
+      # alexa_response.add_reprompt("Can I help you with anything else?", true)
+      alexa_response.say_response_with_reprompt(speech_text, @reprompt, false)
     end
 
     def project_info alexa_request, alexa_response
@@ -99,20 +105,23 @@ module Alexa
         speech_text = "Pip McGregor helps you with the best optometrists in Sydney."
       end
 
-      alexa_response.add_speech(speech_text, true)
-      alexa_response.add_reprompt("Can I help you with anything else?", true)
+      # alexa_response.add_speech(speech_text, true)
+      # alexa_response.add_reprompt("Can I help you with anything else?", true)
+      alexa_response.say_response_with_reprompt(speech_text, @reprompt, false)
     end
 
     def contact alexa_response
       speech_text = "Ok. Would you please tell me your number?"
-      alexa_response.add_speech(speech_text, true)
-      alexa_response.add_reprompt("Ok. Would you please tell me your number?", true)
+      # alexa_response.add_speech(speech_text, true)
+      # alexa_response.add_reprompt("Ok. Would you please tell me your number?", true)
+      alexa_response.say_response_with_reprompt(speech_text, "Ok. Would you please tell me your number?", false)
     end
 
     def user_info alexa_request, alexa_response
       speech_text = "Thank you. We will call you on " + alexa_request.slots["phone"]["value"] + "."
-      alexa_response.add_speech(speech_text, true)
-      alexa_response.add_reprompt("Can I help you with anything else?", true)
+      # alexa_response.add_speech(speech_text, true)
+      # alexa_response.add_reprompt("Can I help you with anything else?", true)
+      alexa_response.say_response_with_reprompt(speech_text, @reprompt, false)
     end
   end
 end
