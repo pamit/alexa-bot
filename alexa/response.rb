@@ -44,7 +44,7 @@ module Alexa
 
     def launch_request alexa_response
       speech_text =
-        "Welcome to Round Table Apps. " +
+        "Welcome to MY COMPANY. " +
         "We are a software development company and we can help you with your business. " +
         "You can ask me about our company and our projects."
       # alexa_response.add_speech(speech_text, true)
@@ -59,7 +59,7 @@ module Alexa
     def help_intent alexa_response
       speech_text = ""
       speech_text += "Here are some things you can say: "
-      speech_text += "Tell me about Round Table Apps. "
+      speech_text += "Tell me about MY COMPANY. "
       speech_text += "Tell me about your projects. "
       speech_text += "Give me some information about a project. "
       speech_text += "You can also say stop if you're done. "
@@ -71,9 +71,8 @@ module Alexa
 
     def company_info alexa_response
       data = [
-        "We are Round Table Apps. We build the best Apps for Life. We are mobile and website app developers building digital solutions to make life better for your business and better for your customers. Tell us the change you want to create in the world and we will make it happen.",
-        "We are Your Tech Partner Our army of experienced mobile developers, web developers, architects, designers and entrepreneurial thinkers are ready to take on your projects and partner with you on the tech side.",
-        "Round Table is a full stack web development agency for all of your tech needs. We create beautiful, functional, innovative software that achieves measurable results for your business and that your customers will love to use."
+        "We are MY COMPANY. We build best apps!",
+        "We are a full stack web development agency"
       ]
       speech_text = data[((Random.rand * 1000) % data.size).floor]
       # alexa_response.add_speech(speech_text, true)
@@ -82,7 +81,7 @@ module Alexa
     end
 
     def projects_list alexa_response
-      speech_text = "These are some of our projects: my sumo, zupply, pfm, pip mcgregor, hum, workfast"
+      speech_text = "These are some of our projects: AA, BB, CC and DD"
       # alexa_response.add_speech(speech_text, true)
       # alexa_response.add_reprompt("Can I help you with anything else?", true)
       alexa_response.say_response_with_reprompt(speech_text, @reprompt, false)
@@ -93,16 +92,12 @@ module Alexa
       project = alexa_request.slots["project"]["value"]
       if !project || project.empty?
         speech_text = "Ask me about a project and I can give you more details on that."
-      elsif (project == "my sumo")
-        speech_text = "With sumo app you can order salads from Sumo Salad stores and you can collect points for your next order."
-      elsif (project == "zupply")
-        speech_text = "Zupply is a successful B2B ecommerce website which helps businessess to find each other."
-      elsif (project == "douugh")
-        speech_text = "Personal finance manager for you. It helps you manage your expenses."
-      elsif (project == "hum")
-        speech_text = "Hum is a B2B website to help businesses manage their requirements."
-      elsif (project == "pip mcgregor")
-        speech_text = "Pip McGregor helps you with the best optometrists in Sydney."
+      elsif (project == "AA")
+        speech_text = "AA is about"
+      elsif (project == "BB")
+        speech_text = "BB is about"
+      elsif (project == "CC")
+        speech_text = "CC is about"
       end
 
       # alexa_response.add_speech(speech_text, true)
