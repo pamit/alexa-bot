@@ -15,7 +15,7 @@ gem "rack-cors", :require => "rack/cors"
 
 group :development, :test do
   gem "byebug"
-  gem "rake", "~> 10.4"
+  gem "rake", "~> 12.3"
   gem "foreman"
 end
 
